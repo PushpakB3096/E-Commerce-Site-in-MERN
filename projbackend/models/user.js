@@ -47,6 +47,9 @@ const userSchema = new schema({
         type: Array,
         default: []
     }
+},
+{
+    timestamps: true //to keep track of when a particular record was stored
 });
 
 //defining schema virtuals
@@ -92,3 +95,5 @@ const UserPrivileges = {
 };
 
 module.exports = mongoose.model("User", userSchema);
+
+/* end of user shema */
