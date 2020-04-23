@@ -1,6 +1,9 @@
 /* for user schema */
 
 const mongoose = require('mongoose');
+const crypto = require('crypto');
+const uuidv1 = require('uuid/v1');
+
 const schema = mongoose.Schema;
 
 const userSchema = new schema({
@@ -27,10 +30,9 @@ const userSchema = new schema({
         type: String,
         trim: true
     },
-    //TODO: add salting for password later
-    password: {
+    encryptedPassword: {
         type: String,
-        trim: true,
+        required: true,
         minlength: 6,
         maxlength: 12
     },
@@ -39,7 +41,7 @@ const userSchema = new schema({
     },
     privilege: {
         type: UserPrivileges,
-        default: UserPrivileges.USER
+        default: UserPrivileges.BASIC
     },
     orders: {
         type: Array,
@@ -47,10 +49,45 @@ const userSchema = new schema({
     }
 });
 
-//TODO: move this to a specific file for enums/constants later
+//defining schema virtuals
+userSchema.virtual("password")
+            .set(function(password){
+                this._password = password;
+                this.salt = uuidv1(); //generates a random salt using the UUID package
+                this.encryptedPassword = this.generateSecuredPW(password);
+            })
+            .get(function(){
+                return this._password;
+            });
+
+//defining schema methods
+userSchema.method = {
+    generateSecuredPW: function(plainTextPW){
+        if(!plainTextPW){
+            return ""; //TODO: move common constants like null values, spaces, etc to a separate file.
+        }
+
+        var securedPW; //for storing and returing the encrypted password
+
+        try{
+            securedPW = crypto.createHmac("sha256", this.salt)
+                        .update(plainTextPW)
+                        .digest("hex");
+
+            return securedPW;
+        } catch(err){
+            return "Something went wrong";
+        }
+    },
+    authenticateUser: function(plainTextPW){ //basic user authentication
+        return this.generateSecuredPW(plainTextPW) === this.encryptedPassword;
+    }
+};
+
+//TODO: move this to a specific file for enums later
 //defining a user privilege enum
 const UserPrivileges = {
-    USER: "user",
+    BASIC: "basic",
     ADMIN: "admin"
 };
 
