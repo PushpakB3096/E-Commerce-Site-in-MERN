@@ -1,0 +1,47 @@
+/* schema for product */
+
+const mongoose = require('mongoose');
+const schema = mongoose.Schema;
+
+const {ObjectId} = mongoose.Schema;
+
+const ProductSchema = new schema({
+    name: {
+        type: String,
+        trim: true,
+        required: true,
+        maxlength: 28
+    },
+    description: {
+        type: String,
+        trim: true,
+        maxlength: 500
+    },
+    price: {
+        type: Number,
+        trim: true,
+        required: true,
+        maxlength: 28,
+    },
+    category: { 
+        type: ObjectId,
+        ref: "Category",         //linking to CategorySchema
+        required: true
+    },
+    stock: {
+        type: Number
+    },
+    sold: {
+        type: Number,
+        default: 0
+    },
+    image: {
+        data: Buffer,
+        contentType: String
+    }
+},
+{
+    timestamps: true //to keep track of when a particular record was stored
+});
+
+/* end of product schema */

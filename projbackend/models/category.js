@@ -5,7 +5,8 @@ const schema = mongoose.Schema;
 
 const categorySchema = new schema({
     name: {
-        type: categoryNames
+        type: categoryNames,
+        required: true
     }
 });
 
