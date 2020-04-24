@@ -2,10 +2,17 @@ require('dotenv').config();   //loading the 'dotenv' package to read config from
 
 const mongoose = require('mongoose');
 const express = require('express');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const cors = require("cors");
 
 const app = express();
 
-const PORT = 9999;
+app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(cors());
+
+const PORT = process.env.SERVERPORT;
 
 mongoose.connect(process.env.DATABASEURL, { 
     useNewUrlParser: true,
