@@ -1,4 +1,4 @@
-/* schema for product */
+/* for product schema */
 
 const mongoose = require('mongoose');
 const schema = mongoose.Schema;
@@ -17,7 +17,7 @@ const ProductSchema = new schema({
         trim: true,
         maxlength: 500
     },
-    price: {
+    cost: {
         type: Number,
         trim: true,
         required: true,
@@ -43,5 +43,7 @@ const ProductSchema = new schema({
 {
     timestamps: true //to keep track of when a particular record was stored
 });
+
+module.exports = mongoose.model("Product", ProductSchema);
 
 /* end of product schema */
