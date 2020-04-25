@@ -6,17 +6,24 @@ const uuidv1 = require('uuid/v1');
 
 const schema = mongoose.Schema;
 
+//TODO: move this to a specific file for enums later
+//defining a user privilege enum
+const UserPrivileges = {
+    BASIC: "basic",
+    ADMIN: "admin"
+};
+
 const userSchema = new schema({
     firstName: {
         type: String,
         required: true,
-        maxlength = 28,
+        maxlength: 28,
         trim: true
     },
     lastName: {
         type: String,
         required: false,
-        maxlength = 28,
+        maxlength: 28,
         trim: true
     },
     email: {
@@ -32,9 +39,7 @@ const userSchema = new schema({
     },
     encryptedPassword: {
         type: String,
-        required: true,
-        minlength: 6,
-        maxlength: 12
+        required: true
     },
     salt: {
         type: String
@@ -64,7 +69,7 @@ userSchema.virtual("password")
             });
 
 //defining schema methods
-userSchema.method = {
+userSchema.methods = {
     generateSecuredPW: function(plainTextPW){
         if(!plainTextPW){
             return ""; //TODO: move common constants like null values, spaces, etc to a separate file.
@@ -85,13 +90,6 @@ userSchema.method = {
     authenticateUser: function(plainTextPW){ //basic user authentication
         return this.generateSecuredPW(plainTextPW) === this.encryptedPassword;
     }
-};
-
-//TODO: move this to a specific file for enums later
-//defining a user privilege enum
-const UserPrivileges = {
-    BASIC: "basic",
-    ADMIN: "admin"
 };
 
 module.exports = mongoose.model("User", userSchema);
