@@ -15,6 +15,7 @@ const ProductSchema = new schema({
     description: {
         type: String,
         trim: true,
+        required: true,
         maxlength: 500
     },
     cost: {
