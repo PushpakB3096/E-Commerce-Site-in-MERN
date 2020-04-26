@@ -1,3 +1,5 @@
+/* start of app.js */
+
 require('dotenv').config();   //loading the 'dotenv' package to read config from '.env' file
 
 const mongoose = require('mongoose');
@@ -6,7 +8,9 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const cors = require("cors");
 
+//importing routes
 const authRoute = require("./routes/auth");
+const userRoute = require("./routes/user");
 
 const PORT = process.env.SERVERPORT;
 
@@ -26,9 +30,12 @@ mongoose.connect(process.env.DATABASEURL, {
     console.log("CONNECTION TO THE DB ESTABLISHED");
 });
 
-//routes
+//using the routes
 app.use("/api", authRoute);
+app.use("/api", userRoute);
 
 app.listen(PORT, () => {
     console.log(`Server listening to port ${PORT}...`);
 });
+
+/* end of app.js */
