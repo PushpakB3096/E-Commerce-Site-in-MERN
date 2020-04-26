@@ -1,2 +1,8 @@
+#all node packages
 projbackend/node_modules/
+
+#environment variables
 projbackend/.env
+
+#all external assets
+assets

@@ -12,6 +12,7 @@ const cors = require("cors");
 const authRoute = require("./routes/auth");
 const userRoute = require("./routes/user");
 const categoryRoute = require("./routes/category");
+const productRoute = require("./routes/product");
 
 const PORT = process.env.SERVERPORT;
 
@@ -35,6 +36,7 @@ mongoose.connect(process.env.DATABASEURL, {
 app.use("/api", authRoute);
 app.use("/api", userRoute);
 app.use("/api", categoryRoute);
+app.use("/api", productRoute);
 
 app.listen(PORT, () => {
     console.log(`Server listening to port ${PORT}...`);
