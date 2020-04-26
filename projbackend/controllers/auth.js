@@ -110,8 +110,8 @@ exports.isAuthenticated = (req, res, next) => {
 //checking if the user is admin
 exports.isAdmin = (req, res, next) => {
     if(!(req.profile.privilege === "admin")){
-        return res.json({
-            error: "Access Denied."
+        return res.status(403).json({
+            error: "Access Denied. Only an admin can perform this action"
         });
     }
     next();
