@@ -13,6 +13,8 @@ const UserPrivileges = {
     ADMIN: "admin"
 };
 
+Object.freeze(UserPrivileges);      //don't allow new entries in the enum
+
 const userSchema = new schema({
     firstName: {
         type: String,
