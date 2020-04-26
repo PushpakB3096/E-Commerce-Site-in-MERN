@@ -3,7 +3,7 @@
 const mongoose = require('mongoose');
 const schema = mongoose.Schema;
 
-const {ObjectId} = mongoose.Schema;
+const { ObjectId } = mongoose.Schema;
 
 const ProductInCartSchema = new schema({
     product: {
