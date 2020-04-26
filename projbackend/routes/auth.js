@@ -21,32 +21,6 @@ router.post("/signin", [
     check("password").isLength({ min: 6 }).withMessage("Lenght must be more than or equal to 6 characters")
 ], signIn);
 
-//TODO: move all the middlewares to a separate file
-//custom middlewares
-//checking if the user is authenticated
-exports.isAuthenticated = (req, res, next) => {
-    var isTrue = req.profile &&     //req.profile will be set from the UI
-                 req.auth &&        //checking the userProperty called "auth". auth contains the user's _id
-                 req.auth._id === req.profile._id;      //checking if both the _id are same
-    
-        if(!isTrue){
-            return res.json({
-            error: "Access Denied"
-        });
-    }
-    next();
-};
-
-//checking if the user is admin
-exports.isAdmin = (req, res, next) => {
-    if(!(req.profile.privilege === "admin")){
-        return res.json({
-            error: "Access Denied."
-        });
-    }
-    next();
-};
-
 module.exports = router;
 
 /* end of auth route */
