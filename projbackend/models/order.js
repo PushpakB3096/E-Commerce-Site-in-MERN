@@ -3,6 +3,8 @@
 const mongoose = require('mongoose');
 const schema = mongoose.Schema;
 
+const ProductInCartSchema = require("./productincart").schema;
+
 const {ObjectId} = mongoose.Schema;
 
 const OrderSchema = new schema({
@@ -23,7 +25,7 @@ const OrderSchema = new schema({
         
     },
     updated: {
-        type: true   //to show the update of order to the user
+        type: Boolean   //to show the update of order to the user
     }
 },
 {
