@@ -4,6 +4,8 @@ const formidable = require("formidable");
 const _ = require("lodash");
 const fs = require("fs");
 
+const { validationResult } = require('express-validator');   //importing package for validation
+
 const Product = require("../models/product");
 
 exports.getProductById = (req, res, next, id) => {
@@ -42,18 +44,18 @@ exports.createProduct = (req, res) => {
                 error: `Param \'${errors.array()[0].param}\' could not be saved. Reason: ${errors.array()[0].msg}`
             });
         }
-        
+
         const newProduct = new Product(fields);     //creating the new product object
         
         //handling file
-        if(file.photo){
-            if(file.photo.size > (5 * 1024 * 1024)){
+        if(file.image){
+            if(file.image.size > (5 * 1024 * 1024)){
                 return res.status(413).json({
                     error: "The file size is greater than 5 Mb"
                 });
             }
-            newProduct.image.data = fs.readFileSync(file.photo.path);
-            newProduct.image.contentType = file.photo.type;
+            newProduct.image.data = fs.readFileSync(file.image.path);
+            newProduct.image.contentType = file.image.type;
         }
 
         newProduct.save((err, product) => {
@@ -62,6 +64,17 @@ exports.createProduct = (req, res) => {
                     error: "Some error occured while saving the product"
                 });
             }
+            res.status(200).json({
+                msg: "Product saved successfully",
+                product: {
+                    name: product.name,
+                    description: product.description,
+                    cost: product.cost,
+                    category: product.category,
+                    stock: product.stock,
+                    sold: product.sold
+                }
+            });
         });
     });
     

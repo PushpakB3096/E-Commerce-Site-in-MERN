@@ -30,7 +30,8 @@ const ProductSchema = new schema({
         required: true
     },
     stock: {
-        type: Number
+        type: Number,
+        required: true
     },
     sold: {
         type: Number,
