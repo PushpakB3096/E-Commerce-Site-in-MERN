@@ -6,3 +6,6 @@ projbackend/.env
 
 #all external assets
 assets
+
+#local IDE settings
+projbackend/.vscode
