@@ -69,7 +69,7 @@ exports.getOrderList = (req, res) => {
     });
 };
 
-exports.pushOrderinOrdersList = (req, res, next) => {       //gets the order from UI and pushes the details to the user DB
+exports.pushOrderinOrdersList = (req, res, next) => {       //middleware - gets the order from UI and pushes the details to the user DB
     let allOrders = [];
 
     req.body.order.purchases.forEach(product => {

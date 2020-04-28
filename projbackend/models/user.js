@@ -6,15 +6,6 @@ const uuidv1 = require('uuid/v1');
 
 const schema = mongoose.Schema;
 
-//TODO: move this to a specific file for enums later
-//defining a user privilege enum
-const UserPrivileges = {
-    BASIC: "basic",
-    ADMIN: "admin"
-};
-
-Object.freeze(UserPrivileges);      //don't allow new entries in the enum
-
 const userSchema = new schema({
     firstName: {
         type: String,
@@ -47,8 +38,9 @@ const userSchema = new schema({
         type: String
     },
     privilege: {
-        type: UserPrivileges,
-        default: UserPrivileges.BASIC
+        type: String,
+        enum: ["Admin", "Basic"],
+        default: "Basic"
     },
     orders: {
         type: Array,
