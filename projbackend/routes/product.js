@@ -11,6 +11,7 @@ const {
   getProduct,
   image,
   updateProduct,
+  deleteProduct,
   getAllProducts,
   gallAllUniqueCategories
 } = require("../controllers/product");
