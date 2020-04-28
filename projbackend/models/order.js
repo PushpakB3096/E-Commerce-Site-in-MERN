@@ -24,8 +24,13 @@ const OrderSchema = new schema({
         ref: "User"    //linking to UserSchema
         
     },
+    status: {   //show the status of the order to the user
+        type: String,
+        enum: ["Recieved", "Processed", "Shipped", "Delivered", "Cancelled"],
+        default: "Recieved"
+    },
     updated: {
-        type: Boolean   //to show the update of order to the user
+        type: Date   //to show the when the order was last updated
     }
 },
 {
