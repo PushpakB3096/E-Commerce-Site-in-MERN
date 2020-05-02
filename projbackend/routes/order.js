@@ -33,7 +33,7 @@ router.post(
   updateInventory,
   createOrder
 );
-router.put("/order/:orderId//status/:userId", isSignedIn, isAuthenticated, isAdmin, updateOrderStatus);
+router.put("/order/:orderId/status/:userId", isSignedIn, isAuthenticated, isAdmin, updateOrderStatus);
 
 
 
