@@ -8,8 +8,8 @@ const { check } = require('express-validator');   //importing package for valida
 const { logout, signUp, signIn, isSignedIn } = require('../controllers/auth');
 
 //route for handing user registration
-router.post("/signup", [
-    check("email").isEmail().withMessage("Not a valid email"),
+router.post("/signup", [    //TODO: add validation to check if user has entered email or not
+    check("email").isEmail().withMessage("Please enter a valid email."),
     check("password").isLength({ min: 6 }).withMessage("Lenght must be more than or equal to 6 characters")
 ], signUp);
 

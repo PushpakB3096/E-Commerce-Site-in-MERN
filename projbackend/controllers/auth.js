@@ -11,7 +11,7 @@ exports.signUp = (req, res) => {
 
     if(!errors.isEmpty()){
         return res.status(422).json({
-            error: `Param \'${errors.array()[0].param}\' could not be saved. Reason: ${errors.array()[0].msg}`
+            error: `${errors.array()[0].msg}`
         });
     }
 
