@@ -7,7 +7,7 @@ import { Link, withRouter } from 'react-router-dom';
 
 const activeTabChecker = (history, path) => {
     // history is given by react
-    if(history.location.pathname === path){     //if the current path is same as the path provided, change tab link color to white
+    if(history.location.pathname === path){     //if the current path is same as the path provided, change tab link color
         return {
             color: "#2ECC72"
         };
