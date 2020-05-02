@@ -22,9 +22,9 @@ router.param("orderId", getOrderById);
 
 //get routes
 router.get("/order/all/:userId", isSignedIn, isAuthenticated, isAdmin, getAllOrder);
-router.get("");
+router.get("/order/status/:userId", isSignedIn, isAuthenticated, isAdmin, getOrderStatus);
 
-//update route - for creating a new order
+//update route
 router.post(
   "/order/create/:userId",
   isSignedIn,
@@ -33,6 +33,7 @@ router.post(
   updateInventory,
   createOrder
 );
+router.put("/order/:orderId//status/:userId", isSignedIn, isAuthenticated, isAdmin, updateOrderStatus);
 
 
 
