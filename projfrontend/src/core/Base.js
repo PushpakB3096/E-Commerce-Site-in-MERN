@@ -24,10 +24,10 @@ export default function Base({
             </div>
             <footer className="footer bg-dark mt-auto py-3">
                 <div className="container-fluid bg-success text-center text-white py-3">
-                    <h3>If you have any questions, contact us.</h3>
-                    <button className="btn btn-warning btn-lg btn-round">Contact Us</button>
+                    <span id="contact-text">If you have any questions, contact us </span>
+                    <button className="btn btn-warning btn-sm">Contact Us</button>
                 </div>
-                <div className="container">
+                <div id="bottom-text" className="container">
                     <span className="text-muted">An <span className="text-white">amazing</span> marketplace for all your needs!</span>
                 </div>
             </footer>
