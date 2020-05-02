@@ -78,6 +78,7 @@ export default function Signup(){
           </div>
         );
     };
+    
     // function to render the signup form
     const signUpForm = () => {
         return (
