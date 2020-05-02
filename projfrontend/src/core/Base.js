@@ -16,7 +16,7 @@ export default function Base({
             <Navbar />
             <div className="container-fluid">
                 <div className="jumbotron bg-dark text-white text-center">
-                    <h2 className="display-4">{ title }</h2>
+                    <h4 className="display-4">{ title }</h4>
                     <p className="lead">{ description }</p>
                 </div>
                 {/* main content goes below */}
@@ -34,7 +34,5 @@ export default function Base({
         </div>
     );
 };
-
-
 
 /* end of Base.js */
