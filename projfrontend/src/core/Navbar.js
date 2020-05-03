@@ -41,7 +41,9 @@ const Navbar = ({ history }) => {
               Cart
             </Link>
           </li>
-          <li className="nav-item">
+          {/* Conditional rendering of dashboard links */}
+          { isAuthenticated() && isAuthenticated().user.privilege === "Basic" && (
+            <li className="nav-item">
             <Link
               style={activeTabChecker(history, "/user/dashboard")}
               className="nav-link"
@@ -50,7 +52,9 @@ const Navbar = ({ history }) => {
               Dashboard
             </Link>
           </li>
-          <li className="nav-item">
+          )}
+          { isAuthenticated() && isAuthenticated().user.privilege === "Admin" && (
+            <li className="nav-item">
             <Link
               style={activeTabChecker(history, "/admin/dashboard")}
               className="nav-link"
@@ -59,9 +63,10 @@ const Navbar = ({ history }) => {
               Admin Dashboard
             </Link>
           </li>
+          )}
           {!isAuthenticated() && (      //don't show the signup & signin links when already logged in
               <Fragment>
-              <li className="nav-item">
+              <li className="nav-item ml-auto">
                 <Link
                   style={activeTabChecker(history, "/signup")}
                   className="nav-link"
