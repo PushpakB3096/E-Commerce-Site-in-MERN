@@ -48,7 +48,11 @@ export default function Signin(){
     const loadingMessage = () => {      //show success message, if any
        if(isLoading){
            return (
-               <div className="alert alert-info">Loading...</div>
+             <div className="row">
+               <div className="col-md-6 offset-sm-3 text-left">
+                 <div className="alert alert-info">Loading...</div>
+               </div>
+             </div>
            );
        }
     };

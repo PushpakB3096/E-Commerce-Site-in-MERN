@@ -2,8 +2,10 @@
 
 //component for creating a navbar
 
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Link, withRouter } from 'react-router-dom';
+
+import { isAuthenticated, signout } from '../auth/helper';
 
 const activeTabChecker = (history, path) => {
     // history is given by react
@@ -19,53 +21,84 @@ const activeTabChecker = (history, path) => {
 
 const Navbar = ({ history }) => {
     return (
-        <div>
-            <ul className="nav nav-tabs bg-dark">
-                {/* TODO: add conditional rendering of navbar links */}
-                <li className="nav-item">
-                    <Link style={ activeTabChecker(history, "/") }
-                          className="nav-link" to="/">
-                        Home
-                    </Link>
-                </li>
-                <li className="nav-item">
-                    <Link style={ activeTabChecker(history, "/cart") }
-                          className="nav-link" to="/cart">
-                        Cart
-                    </Link>
-                </li>
-                <li className="nav-item">
-                    <Link style={ activeTabChecker(history, "/user/dashboard") }
-                          className="nav-link" to="/user/dashboard">
-                        Dashboard
-                    </Link>
-                </li>
-                <li className="nav-item">
-                    <Link style={ activeTabChecker(history, "/admin/dashboard") }
-                          className="nav-link" to="/admin/dashboard">
-                        Admin Dashboard
-                    </Link>
-                </li>
-                <li className="nav-item">
-                    <Link style={ activeTabChecker(history, "/signup") }
-                          className="nav-link" to="/signup">
-                        Signup
-                    </Link>
-                </li>
-                <li className="nav-item">
-                    <Link style={ activeTabChecker(history, "/signin") }
-                          className="nav-link" to="/signin">
-                        Signin
-                    </Link>
-                </li>
-                <li className="nav-item">
-                    <Link style={ activeTabChecker(history, "/logout") }
-                          className="nav-link" to="/logout">
+      <div>
+        <ul className="nav nav-tabs bg-dark">
+          <li className="nav-item">
+            <Link
+              style={activeTabChecker(history, "/")}
+              className="nav-link"
+              to="/"
+            >
+              Home
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link
+              style={activeTabChecker(history, "/cart")}
+              className="nav-link"
+              to="/cart"
+            >
+              Cart
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link
+              style={activeTabChecker(history, "/user/dashboard")}
+              className="nav-link"
+              to="/user/dashboard"
+            >
+              Dashboard
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link
+              style={activeTabChecker(history, "/admin/dashboard")}
+              className="nav-link"
+              to="/admin/dashboard"
+            >
+              Admin Dashboard
+            </Link>
+          </li>
+          {!isAuthenticated() && (      //don't show the signup & signin links when already logged in
+              <Fragment>
+              <li className="nav-item">
+                <Link
+                  style={activeTabChecker(history, "/signup")}
+                  className="nav-link"
+                  to="/signup"
+                >
+                  Signup
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  style={activeTabChecker(history, "/signin")}
+                  className="nav-link"
+                  to="/signin"
+                >
+                  Signin
+                </Link>
+              </li>
+            </Fragment>
+          )}
+          {isAuthenticated() && (       //conditional rendering of the logout button
+            <Fragment>
+                <li className="nav-item ml-auto">
+                    <span
+                        className="nav-link text-warning"
+                        onClick={() => {
+                        signout(() => {
+                            history.push("/");
+                        });
+                        }}
+                    >
                         Logout
-                    </Link>
+                    </span>
                 </li>
-            </ul>
-        </div>
+            </Fragment>
+          )}
+        </ul>
+      </div>
     );
 };
 

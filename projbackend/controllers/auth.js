@@ -38,7 +38,7 @@ exports.signIn = (req, res) => {
     //checking if there are any validation errors
     if(!errors.isEmpty()){
         return res.status(422).json({
-            error: `Param \'${errors.array()[0].param}\' could not be saved. Reason: ${errors.array()[0].msg}`
+            error: `${errors.array()[0].msg}`
         });
     }
 
@@ -47,7 +47,7 @@ exports.signIn = (req, res) => {
         //checking if the email address is registered 
         if(err || !user){
             return res.status(400).json({
-                error: "Email ID not found"
+                error: "Email ID not registered."
             });
         }
 
