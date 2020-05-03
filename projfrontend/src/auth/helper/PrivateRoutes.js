@@ -10,7 +10,7 @@ const PrivateRoutes = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={(props) =>
-        isAuthenticated() ? (
+        isAuthenticated() && isAuthenticated().user.privilege !== "Admin" ? (
           <Component {...props} />
         ) : (
           <Redirect
