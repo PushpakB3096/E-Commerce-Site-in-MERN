@@ -76,12 +76,12 @@ export default function Signin(){
         if(didRedirect){
             if(user && user.privilege === "Basic"){
                 return (
-                    <p>Redirect to user dashboard</p>       //placeholder
+                    <Redirect to="/user/dashboard" />
                 );
             }
             else{
                 return (
-                    <p>Redirect to admin dashboard</p>      //placeholder
+                    <Redirect to="/admin/dashboard" />
                 );
             }
         }
