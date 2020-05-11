@@ -67,11 +67,11 @@ exports.signIn = (req, res) => {
         res.cookie("token", token, { expire: new Date() + 3600 });
 
         //send response to the front-end
-        const { _id, firstName, lastName, email, privilege } = user;  //deconstructing the user obtained from DB
+        const { _id, firstName, lastName, email, userInfo, privilege } = user;  //deconstructing the user obtained from DB
 
         return res.json({
             token,
-            user: { _id, firstName, lastName, email, privilege }
+            user: { _id, firstName, lastName, email, userInfo, privilege }
         });
     });
 }; 
@@ -109,7 +109,7 @@ exports.isAuthenticated = (req, res, next) => {
 
 //checking if the user is admin
 exports.isAdmin = (req, res, next) => {
-    if(!(req.profile.privilege === "admin")){
+    if(!(req.profile.privilege === "Admin")){
         return res.status(403).json({
             error: "Access Denied. Only an admin can perform this action"
         });

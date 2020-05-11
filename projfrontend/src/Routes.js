@@ -10,6 +10,7 @@ import PrivateRoutes from './auth/helper/PrivateRoutes';
 import AdminRoutes from './auth/helper/AdminRoutes';
 import AdminDashBoard from './user/AdminDashBoard';
 import UserDashBoard from './user/UserDashBoard';
+import AddCategory from './admin/AddCategory';
 
 
 export default function Routes(){
@@ -21,6 +22,7 @@ export default function Routes(){
                <Route path="/signin" exact component={ Signin }/>
                <PrivateRoutes path="/user/dashboard" exact component={ UserDashBoard }/>
                <AdminRoutes path="/admin/dashboard" exact component={ AdminDashBoard }/>
+               <AdminRoutes path="/admin/create/category" exact component={ AddCategory }/>
            </Switch>
        </Router>
     );
