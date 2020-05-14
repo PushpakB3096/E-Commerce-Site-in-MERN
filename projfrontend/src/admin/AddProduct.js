@@ -100,7 +100,7 @@ export default function AddProduct() {
 
     const errorMessage = () => {
         return (
-            <div className="alert alert-danger mt-3">
+            <div className="alert alert-danger mt-3"
                  style={{ display: error ? "" : "none" }}>
                 <h6>Some error occured while saving the product</h6>
             </div>
@@ -181,7 +181,7 @@ export default function AddProduct() {
         return (
         <div className="mt-5">
             <Link className="btn btn-sm btn-info mb-2" to="/admin/dashboard">
-            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            <i className="fa fa-arrow-left" aria-hidden="true"></i>
             <span> Admin Dashboard</span>
             </Link>
         </div>
