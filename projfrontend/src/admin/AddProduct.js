@@ -73,8 +73,7 @@ export default function AddProduct() {
                   image: "",
                   stock: "",
                   loading: false,
-                  createdProduct: data.name,
-
+                  createdProduct: data.product.name
                 });
             }
         });
