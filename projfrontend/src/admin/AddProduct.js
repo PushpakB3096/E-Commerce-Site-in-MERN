@@ -22,7 +22,7 @@ export default function AddProduct() {
         error: "",
         loading: false,
         createdProduct: "",
-        getARedirect: false,
+        getARedirect: false,    //TODO: redirect user back to admin dashboard after a certain amount of time
         formData: "",
     });
 
@@ -79,7 +79,7 @@ export default function AddProduct() {
         });
     };
 
-    const handleChange = (name) => (event) => {
+    const handleChange = name => (event) => {
 
         //value is going to have either a file name or whatever value comes up from the form
         const value = (name === "image") ? event.target.files[0] : event.target.value;

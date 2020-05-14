@@ -123,7 +123,7 @@ exports.updateProduct = (req, res) => {
       });
     }
 
-    const oldProduct = req.product; //fetching the product from req
+    var oldProduct = req.product; //fetching the product from req
     oldProduct = _.extend(oldProduct, fields); //updating the product using lodash module
 
     //handling file
