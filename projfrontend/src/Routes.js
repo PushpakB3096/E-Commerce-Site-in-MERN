@@ -11,7 +11,8 @@ import AdminRoutes from './auth/helper/AdminRoutes';
 import AdminDashBoard from './user/AdminDashBoard';
 import UserDashBoard from './user/UserDashBoard';
 import AddCategory from './admin/AddCategory';
-
+import ManageCategories from './admin/ManageCategories';
+import AddProduct from './admin/AddProduct';
 
 export default function Routes(){
     return (
@@ -23,6 +24,8 @@ export default function Routes(){
                <PrivateRoutes path="/user/dashboard" exact component={ UserDashBoard }/>
                <AdminRoutes path="/admin/dashboard" exact component={ AdminDashBoard }/>
                <AdminRoutes path="/admin/create/category" exact component={ AddCategory }/>
+               <AdminRoutes path="/admin/categories" exact component={ ManageCategories }/>
+               <AdminRoutes path="/admin/create/product" exact component={ AddProduct }/>
            </Switch>
        </Router>
     );

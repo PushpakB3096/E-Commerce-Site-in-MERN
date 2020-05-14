@@ -20,6 +20,9 @@ export default function AdminDashBoard(){
                         <Link to="/admin/create/category" className="nav-link text-success text-center">Create Category</Link>
                     </li>
                     <li className="list-group-item">
+                        <Link to="/admin/categories" className="nav-link text-success text-center">Manage Categories</Link>
+                    </li>
+                    <li className="list-group-item">
                         <Link to="/admin/create/product" className="nav-link text-success text-center">Create Product</Link>
                     </li>
                     <li className="list-group-item">

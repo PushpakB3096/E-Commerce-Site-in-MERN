@@ -1,8 +1,9 @@
 /* start of AddCategory.js */
 
 import React, { useState } from 'react';
-import Base from '../core/Base';
 import { Link } from 'react-router-dom';
+
+import Base from '../core/Base';
 
 import { isAuthenticated } from '../auth/helper';
 import { createCategory } from './helper/adminapicall';
