@@ -1,4 +1,5 @@
 /* start of adminapicall.js */
+
 import { API } from '../../backend';
 
 //calls related to category
@@ -21,6 +22,46 @@ export const createCategory = (userId, token, category) => {        //creates a 
 export const getCategories = () => {        //gets all categories
     return fetch(`${API}/categories`, {
         method: "GET"
+    }).then(response => {
+        return response.json();
+    }).catch(err => {
+        return err.json();
+    });
+};
+
+export const getCategory = categoryId => {        //gets a single category
+    return fetch(`${API}/category/${categoryId}`, {
+        method: "GET"
+    }).then(response => {
+        return response.json();
+    }).catch(err => {
+        return err.json();
+    });
+};
+
+export const deleteCategory = (categoryId, userId, token) => {      //deletes a category
+    return fetch(`${API}/category/${categoryId}/${userId}`, {
+        method: "DELETE",
+        headers: {
+            Accept: "application/json",
+            Authorization: `Bearer ${token}`
+        }
+    }).then(response => {
+        return response.json();
+    }).catch(err => {
+        return err.json();
+    });
+};
+
+export const updateCategory = (categoryId, userId, token, category) => {      //updates a category
+    console.log("category", category);
+    return fetch(`${API}/category/${categoryId}/${userId}`, {
+        method: "PUT",
+        headers: {
+            Accept: "application/json",
+            Authorization: `Bearer ${token}`
+        },
+        body: {category}
     }).then(response => {
         return response.json();
     }).catch(err => {
