@@ -23,7 +23,7 @@ export default function AddCategory(){
               <input
                 type="text"
                 className="form-control my-3"
-                autofocus
+                autoFocus
                 required
                 placeholder="Enter a category"
                 value={name}
