@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import Base from '../core/Base';
-import { isAutheticated, isAuthenticated } from "../auth/helper";
+import { isAuthenticated } from "../auth/helper";
 import { getProducts, deleteProduct } from "./helper/adminapicall";
 
 export default function ManageProducts() {
@@ -26,7 +26,7 @@ export default function ManageProducts() {
 
     useEffect(() => {
         preload();
-      }, []);
+    }, []);
 
     const deleteThisProduct = productId =>{
         deleteProduct(productId, user._id, token).then(data => {
@@ -40,7 +40,7 @@ export default function ManageProducts() {
     };
 
     return (
-        <Base title="Welcome admin" description="Manage products here">
+        <Base title="Manage Products" description="Update your existing products here">
       <h2 className="mb-4">All products:</h2>
       <Link className="btn btn-info" to={`/admin/dashboard`}>
         <span className="">Admin Home</span>
