@@ -48,7 +48,12 @@ export default function UpdateCategory({match}){
     const onUpdate = (event) => {
         event.preventDefault();
         setValues({...values, error: "", loading: true});
-        updateCategory(match.params.categoryId, user._id, token, {name})
+
+        var JSOName = {     //converting to JSON object for the req.body
+            "name": name
+        };
+
+        updateCategory(match.params.categoryId, user._id, token, JSON.stringify(JSOName))
         .then(data => {
             if(data.error){
                 setValues({...values, error: data.error});

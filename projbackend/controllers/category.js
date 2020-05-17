@@ -43,9 +43,6 @@ exports.getAllCategories = (req, res) => {
 };
 
 exports.updateCategory = (req, res) => {
-    console.log("req.body", req.body);
-    // console.log("req", req);
-    
     Category.findByIdAndUpdate(
         { _id: req.category._id},
         { $set: req.body },             //update the info obtained from req.body
