@@ -113,10 +113,23 @@ export default function UpdateCategory({match}){
         );
     };
 
+    const renderBackButton = () => {
+        //renders a back button that takes user back to previous page
+        return (
+        <div className="mt-5">
+            <Link className="btn btn-sm btn-info mb-2" to="/admin/dashboard">
+            <i className="fa fa-arrow-left" aria-hidden="true"></i>
+            <span> Admin Dashboard</span>
+            </Link>
+        </div>
+        );
+    };
+
     return (
         <Base title="Update Category" description="Update this category with new data!" className="container bg-info p-4">
             <div className="row bg-white rounded">
                 <div className="col-md-8 offset-md-2">
+                    { renderBackButton() }
                     { successMessage() }
                     { errorMessage() }
                     { renderCategoryForm() }
