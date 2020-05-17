@@ -89,7 +89,7 @@ exports.getProduct = (req, res) => {
 //middleware that is used to display image on the product page - separated from the rest of the product data for performance
 exports.image = (req, res, next) => {
   if (req.product.image.data) {
-    req.set("Content-Type", req.product.iamge.contentType);
+    res.set("Content-Type", req.product.image.contentType);
     return res.send(req.product.image.data);
   }
   next();
