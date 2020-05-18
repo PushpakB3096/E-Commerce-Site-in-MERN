@@ -7,6 +7,7 @@ import { API } from '../backend';
 import Base from './Base';
 import Card from './Card';
 import { loadCart } from './helper/CartHelper';
+import StripeCheckout from './StripeCheckout';
 
 export default function Cart(){
 
@@ -34,7 +35,11 @@ export default function Cart(){
 
     const loadCheckout = () => {
         return (
-            <div>Checkout section</div>
+            <StripeCheckout 
+              products={products}
+              setReload={setReload}
+              reload = {reload}
+            />
         );
     };
     
