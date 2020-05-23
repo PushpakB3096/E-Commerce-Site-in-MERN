@@ -15,7 +15,6 @@ const OrderSchema = new schema({
     },
     address: {
         type:  String,
-        required: true,
         trim: true,
         maxlength: 2000
     },

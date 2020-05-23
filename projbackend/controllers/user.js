@@ -72,7 +72,8 @@ exports.getOrderList = (req, res) => {
 exports.pushOrderinOrdersList = (req, res, next) => {       //middleware - gets the order from UI and pushes the details to the user DB
     let allOrders = [];
 
-    req.body.order.purchases.forEach(product => {
+    req.body.order.products.forEach(product => {
+        console.log("product",product);
         allOrders.push({
             _id: product._id,
             name: product.name,

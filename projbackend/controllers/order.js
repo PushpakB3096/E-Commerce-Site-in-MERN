@@ -34,11 +34,10 @@ exports.createOrder = (req, res) => {
     req.body.order.user = req.profile;
 
     const newOrder = new Order(req.body.order);
-
     newOrder.save((err, savedOrder) => {
         if(err || !savedOrder){
             return res.status(400).json({
-                error: "An error occured while saving the order to the DB"
+                error: "An error occured while saving the order to the DB: " + err
             });
         }
         return res.json(savedOrder);

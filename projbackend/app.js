@@ -14,7 +14,9 @@ const userRoute = require("./routes/user");
 const categoryRoute = require("./routes/category");
 const productRoute = require("./routes/product");
 const orderRoute = require("./routes/order");
-const stripeRoute = require("./routes/stripepayment");
+const paymentRoute = require("./routes/payment");
+//uncomment the below line if you want to use Stripe as your payment gateway
+//const stripeRoute = require("./routes/stripepayment");
 
 const PORT = process.env.SERVERPORT;
 
@@ -29,7 +31,8 @@ app.use(cors());
 mongoose.connect(process.env.DATABASEURL, { 
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useCreateIndex: true
+    useCreateIndex: true,
+    useFindAndModify: false
 }).then(() => {
     console.log("CONNECTION TO THE DB ESTABLISHED");
 });
@@ -40,7 +43,9 @@ app.use("/api", userRoute);
 app.use("/api", categoryRoute);
 app.use("/api", productRoute);
 app.use("/api", orderRoute);
-app.use("/api", stripeRoute);
+app.use("/api", paymentRoute);
+//uncomment the below line if you want to use Stripe as your payment gateway
+//app.use("/api", stripeRoute);
 
 app.listen(PORT, () => {
     console.log(`Server listening to port ${PORT}...`);

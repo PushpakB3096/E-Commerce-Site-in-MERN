@@ -7,14 +7,14 @@ import { API } from '../backend';
 import Base from './Base';
 import Card from './Card';
 import { loadCart } from './helper/CartHelper';
-import StripeCheckout from './StripeCheckout';
+import Braintree from './Braintree';
 
 export default function Cart(){
 
     const [products, setProducts] = useState([]);
     const [reload, setReload] = useState(false);        //for force re-mounting the component and reloading the page
 
-    const loadAllProducts = () => {
+    const loadAllProducts = products => {
         return (
             <div>
                 { products.map((product, index) => {
@@ -35,11 +35,7 @@ export default function Cart(){
 
     const loadCheckout = () => {
         return (
-            <StripeCheckout 
-              products={products}
-              setReload={setReload}
-              reload = {reload}
-            />
+            <Braintree products={products} setReload={setReload} reload={reload} />
         );
     };
     
@@ -50,7 +46,9 @@ export default function Cart(){
     return (
       <Base title="Your Shopping Cart" description="Ready to checkout!">
         <div className="row">
-          <div className="col-6">{ loadAllProducts() }</div>
+          <div className="col-6">{ products.length > 0 ? loadAllProducts(products) : (
+            <h3>No items in your cart. Shop for more!</h3>
+          ) }</div>
           <div className="col-6">{ loadCheckout() }</div>
         </div>
       </Base>

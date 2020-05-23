@@ -183,7 +183,7 @@ exports.updateInventory = (req, res, next) => {
         return {
             updateOne: {
                 filter: { _id: product._id },
-                update: { $inc: { sold: +product.count, stock: -product.count }}
+                update: { $inc: { sold: +product.sold, stock: -product.sold }}
             }
         };
     });
@@ -191,7 +191,7 @@ exports.updateInventory = (req, res, next) => {
     Product.bulkWrite(operations, {}, (err, products) => {
         if(err){        //TODO: write proper error message
             return res.status(400).json({
-                error: "Bulk operations failed"
+                error: "Bulk operations failed" + err
             });
         }
         next();

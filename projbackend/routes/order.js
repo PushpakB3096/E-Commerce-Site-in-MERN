@@ -24,7 +24,7 @@ router.param("orderId", getOrderById);
 router.get("/order/all/:userId", isSignedIn, isAuthenticated, isAdmin, getAllOrder);
 router.get("/order/status/:userId", isSignedIn, isAuthenticated, isAdmin, getOrderStatus);
 
-//update route
+//update routes
 router.post(
   "/order/create/:userId",
   isSignedIn,
@@ -34,8 +34,6 @@ router.post(
   createOrder
 );
 router.put("/order/:orderId/status/:userId", isSignedIn, isAuthenticated, isAdmin, updateOrderStatus);
-
-
 
 module.exports = router;
 
