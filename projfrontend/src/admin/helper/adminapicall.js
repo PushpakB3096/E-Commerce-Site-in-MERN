@@ -81,7 +81,7 @@ export const createProduct = (userId, token, product) => {      //creates a prod
     }).then(response => {
         return response.json();
     }).catch(err => {
-        return err.json();
+        console.log("Error while saving the product ", err);
     });
 };
 

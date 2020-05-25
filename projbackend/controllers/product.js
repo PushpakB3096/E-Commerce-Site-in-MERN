@@ -32,7 +32,7 @@ exports.createProduct = (req, res) => {
   form.parse(req, (err, fields, file) => {
     if (err) {
       return res.status(400).json({
-        error: "Some problem occured",
+        error: "Some problem occured" + err,
       });
     }
 
@@ -63,7 +63,7 @@ exports.createProduct = (req, res) => {
     newProduct.save((err, product) => {
       if (err || !product) {
         return res.status(400).json({
-          error: "Some error occured while saving the product",
+          error: "Some error occured while saving the product" + err,
         });
       }
       return res.status(200).json({

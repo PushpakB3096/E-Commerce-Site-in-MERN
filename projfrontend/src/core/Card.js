@@ -1,6 +1,8 @@
 /* start of Card.js */
 
 import React, { useState, useEffect } from "react";
+import M from "materialize-css";
+
 import ImageHelper from "./helper/ImageHelper";
 import { Redirect } from "react-router-dom";
 import { addProuctToCart, removeItemFromCart } from "./helper/CartHelper";
@@ -31,44 +33,63 @@ export default function Card({
     }
   };
 
+  useEffect(() => {
+    var tooltipElem = document.querySelectorAll('.tooltipped');
+    var tooltipInst = M.Tooltip.init(tooltipElem, {
+      position: "top"
+    });
+
+    var FABelems = document.querySelectorAll('.fixed-action-btn');
+    var FABInst = M.FloatingActionButton.init(FABelems, {});
+  }, []);
+
   return (
-    <div className="card text-white text-center bg-dark border border-info ">
-      <div className="card-header lead">{cardTitle}</div>
-      <div className="card-body">
-        {getRedirected(redirect)}
+    <div className="card hoverable z-depth-3">
+      <div className="card-image">
         <ImageHelper productId={product._id} />
-        <p className="lead bg-success font-weight-normal text-wrap">
-          {cardDesc}
-        </p>
-        <p className="btn btn-success rounded  btn-sm px-4">${cardCost} </p>
-        <div className="row">
-          <div
-            className="col-12"
-            style={{ display: addToCart ? "" : "none" }} //conditional rendering for "Add to Cart" button
-          >
-            <button
-              onClick={addProductInCart}
-              className="btn btn-block btn-outline-success mt-2 mb-2"
+        {addToCart && (
+          <a className="btn-floating halfway-fab waves-effect waves-light red">
+            <i
+              className="material-icons tooltipped"
+              data-tooltip="Add to cart"
+              onClick={() => {
+                addProductInCart();
+                M.toast({
+                  html: "Item added to cart!",
+                  classes: "rounded",
+                });
+              }}
             >
-              Add to Cart
-            </button>
-          </div>
-          <div
-            className="col-12"
-            style={{ display: removeFromCart ? "" : "none" }} //conditional rendering for "Remove from Cart" button
-          >
-            <button
+              add
+            </i>
+          </a>
+        )}
+        {removeFromCart && (
+          <a className="btn-floating halfway-fab waves-effect waves-light red">
+            <i
+              className="material-icons tooltipped"
+              data-tooltip="Remove from cart"
               onClick={() => {
                 removeItemFromCart(product._id);
                 setReload(!reload);
+                M.toast({
+                  html: "Item removed from cart!",
+                  classes: "rounded",
+                });
               }}
-              className="btn btn-block btn-outline-danger mt-2 mb-2"
             >
-              Remove from cart
-            </button>
-          </div>
-        </div>
+              remove
+            </i>
+          </a>
+        )}
       </div>
+      <div className="card-content">
+            <span className="card-title">{cardTitle} @ ${cardCost}</span>
+        <p>{cardDesc}</p>
+      </div>
+      {/* <div className="card-action">
+        <a href="#">This is a link</a>
+      </div> */}
     </div>
   );
 }

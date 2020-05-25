@@ -1,29 +1,63 @@
-.btn,
-.jumbotron,
-.nav :hover {
-  border-radius: 0px;
+.brand-logo{
+  margin-left: 8px;
 }
 
-body {
-  background: #343a40;
+body{
+  background-color: #f3f9f8;
 }
 
-.jumbotron{
-  margin: 0;
-  padding-bottom: 0;
+.brand-logo {
+  display: flex;
+  align-items: center;
 }
 
-footer{
-  position: absolute;
-  height: 1rem;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  min-height: 16.5vh;
-  margin: 0;
+#brand-logo-img{
+  margin: 5px 0;
+  height: 50px;
+  border-radius: 50%;
 }
 
-#bottom-text{
-  font-size: smaller;
-  text-align: center;
+.footer-copyright{
+  background-color: #00838f;
+}
+
+.sidenav-overlay{
+  background-color: transparent;
+}
+
+.slider .indicators .indicator-item.active{
+  background-color: #00838f;
+}
+
+.card-image{
+  height: 375px;
+  overflow: visible;
+}
+
+.slider{
+  margin-top: -23px;
+}
+
+.card{
+  margin: 40px 5px;
+}
+
+#signin-form-container{
+  width: 38%;
+}
+
+#login-btn{
+  background-color: #00838f;
+  margin-top: 0.5em;
+  margin-left: 5.3em;
+  position: relative;
+}
+
+@media (min-width: 900px) {
+  #login-btn{
+    background-color: #00838f;
+    margin-top: 0.5em;
+    margin-left: 13em;
+    position: relative;
+  }
 }

@@ -13,7 +13,7 @@ export default function ImageHelper({productId}) {
         <div className="rounded border border-success p-2">
             <img
               src={imageURL}
-              alt="photo"
+              alt="card"
               style={{ maxHeight: "100%", maxWidth: "100%" }}
               className="mb-3 rounded"
             />

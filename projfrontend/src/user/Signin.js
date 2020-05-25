@@ -3,7 +3,7 @@
 //component for handling user signin
 
 import React, { useState } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 import Base from '../core/Base';
 import { signin, authenticate, isAuthenticated } from '../auth/helper';
@@ -93,40 +93,57 @@ export default function Signin(){
      const signInForm = () => {
         return (
           <div className="row">
-            <div className="col-md-6 offset-sm-3 text-left">
-              <form>
-                <div className="form-group">
-                  <input
-                    className="form-control"
-                    value={email}
-                    onChange={handleChange("email")}
-                    type="email"
-                    placeholder="Enter your email"
-                  />
-                </div>
-                <div className="form-group">
-                  <input
-                    className="form-control"
-                    value={password}
-                    onChange={handleChange("password")}
-                    type="password"
-                    placeholder="Enter your password"
-                  />
-                </div>
-                <button onClick={ onSubmit } className="btn btn-success btn-block">Login</button>
-              </form>
+            <div className="col l12 m12 s12">
+              <div className="container" id="signin-form-container">
+                <form>
+                  <div className="input-field">
+                    <i className="material-icons prefix">email</i>
+                    <input
+                      id="email_field"
+                      className="validate"
+                      value={email}
+                      onChange={handleChange("email")}
+                      type="email"
+                    />
+                    <label htmlFor="email_field">Email</label>
+                    <span
+                      className="helper-text"
+                      data-error="Please enter a valid email address!"
+                      data-success="Looks good!"
+                    ></span>
+                  </div>
+                  <div className="input-field">
+                    <i className="material-icons prefix">lock</i>
+                    <input
+                      id="password_field"
+                      value={password}
+                      onChange={handleChange("password")}
+                      type="password"
+                    />
+                    <label htmlFor="password_field">Password</label>
+                  </div>
+                  <button
+                    id="login-btn"
+                    onClick={onSubmit}
+                    className="btn waves-effect waves-light hoverable responsive"
+                  >
+                    Login
+                    <i className="material-icons right">send</i>
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
         );
     };
 
     return (
-        <Base title="User Login" description="Login now to continue shopping!">
-            { loadingMessage() }
-            { errorMessage() }
-            { signInForm() }
-            { performRedirection() }
-        </Base>
+      <Base title="User Login" description="Login now to continue shopping!" >
+        {loadingMessage()}
+        {errorMessage()}
+        {signInForm()}
+        {performRedirection()}
+      </Base>
     );
 }
 
