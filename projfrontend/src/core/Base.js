@@ -34,6 +34,7 @@ export default function Base({
             </span>
             <a
               target="_blank"
+              rel="noopener noreferrer"
               className="grey-text text-lighten-4 right"
               href="https://github.com/PushpakB3096/"
             >

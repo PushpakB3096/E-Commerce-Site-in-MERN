@@ -1,11 +1,10 @@
 /* start of Braintree.js */
 
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 
 import DropIn from 'braintree-web-drop-in-react';
 
-import { loadCart, emptyCart } from './helper/CartHelper';
+import { emptyCart } from './helper/CartHelper';
 import { getAToken, processPayment } from './helper/paymenthelper';
 import { createOrder } from './helper/OrderHelper';
 import { isAuthenticated } from '../auth/helper';

@@ -64,7 +64,7 @@ export default function AddCategory(){
         return (
             <div className="mt-5">
                 <Link className="btn btn-sm btn-info mb-1" to="/admin/dashboard">
-                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                    <i className="fa fa-arrow-left" aria-hidden="true"></i>
                     <span> Admin Dashboard</span>
                 </Link>
             </div>

@@ -5,7 +5,6 @@ import Base from '../core/Base';
 import { Link } from 'react-router-dom';
 
 import { isAuthenticated } from '../auth/helper/index';
-import AddCategory from '../admin/AddCategory';
 
 export default function AdminDashBoard(){
 

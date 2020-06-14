@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import M from "materialize-css";
 
 import Base from '../core/Base';
 import { getCategories, createProduct } from './helper/adminapicall';
@@ -10,6 +11,8 @@ import { isAuthenticated } from '../auth/helper';
 export default function AddProduct() {
 
     const { user, token } = isAuthenticated();
+
+    var allCategories = [];
 
     const [values, setValues] = useState({
         name: "",
@@ -46,13 +49,20 @@ export default function AddProduct() {
         if (data.error) {
             setValues({ ...values, error: data.error });
         } else {
+        console.log("preload");
             setValues({ ...values, categories: data, formData: new FormData() });
-        }
+            allCategories = data;
+        }   
         });
     };
 
     useEffect(() => {
+        console.log("useEffect");
         preload();
+
+        var elems = document.querySelectorAll('select');
+        var instances = M.FormSelect.init(elems, {});
+
     }, []);
 
     const onSubmit = (event) => {
@@ -107,72 +117,75 @@ export default function AddProduct() {
     };
 
     const createProductForm = () => (
-        <form>
+      <form>
         <span>Upload image</span>
         <div className="form-group">
-            <label className="btn btn-block btn-success">
+          <label className="btn btn-block btn-success">
             <input
-                onChange={handleChange("image")}
-                type="file"
-                name="image"
-                accept="image"
-                placeholder="choose an image"
+              onChange={handleChange("image")}
+              type="file"
+              name="image"
+              accept="image"
+              placeholder="choose an image"
             />
-            </label>
+          </label>
         </div>
         <div className="form-group">
-            <input
+          <input
             onChange={handleChange("name")}
             name="name"
             className="form-control"
             placeholder="Enter product name"
             value={name}
-            />
+          />
         </div>
         <div className="form-group">
-            <textarea
+          <textarea
             onChange={handleChange("description")}
             name="description"
             className="form-control"
             placeholder="Enter product description"
             value={description}
-            />
+          />
         </div>
-        <div className="form-group">
-            <input
+        <div>
+          <input
             onChange={handleChange("cost")}
             type="number"
             className="form-control"
             placeholder="Enter product cost"
             value={cost}
-            />
+          />
+        </div>
+        <div>
+          <select onChange={handleChange("category")}>
+            <option>Select category</option>
+            {allCategories &&
+              allCategories.map((cate, index) => (
+                <option key={index} value={cate._id}>
+                  {cate.name}
+                </option>
+              ))}
+          </select>
+          {console.log("dropdown loaded")}
         </div>
         <div className="form-group">
-            <select onChange={handleChange("category")} className="form-control">
-            <option>Select</option>
-            { categories && 
-                categories.map((cate, index) => (
-                <option key={ index } value={ cate._id }>{ cate.name }</option>
-                ))}
-            </select>
-        </div>
-        <div className="form-group">
-            <input
+          <input
             onChange={handleChange("stock")}
             type="number"
             className="form-control"
             placeholder="Enter the product quantity"
             value={stock}
-            />
+          />
         </div>
         <button
-            type="submit"
-            onClick={onSubmit}
-            className="btn btn-outline-success mb-3"
+          type="submit"
+          onClick={onSubmit}
+          className="btn btn-outline-success mb-3"
         >
-            Create Product
+          Create Product
         </button>
-        </form>
+      </form>
     );
 
     const renderBackButton = () => {

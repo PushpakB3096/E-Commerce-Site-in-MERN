@@ -1,7 +1,5 @@
 /* start of coreapicalls.js */
 
-import React from 'react';
-
 import { API } from '../../backend';
 
 export const getAllProducts = () => {
