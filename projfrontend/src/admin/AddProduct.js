@@ -12,8 +12,7 @@ export default function AddProduct() {
 
     const { user, token } = isAuthenticated();
 
-    var allCategories = [];
-
+    var allCate = [];
     const [values, setValues] = useState({
         name: "",
         description: "",
@@ -49,20 +48,16 @@ export default function AddProduct() {
         if (data.error) {
             setValues({ ...values, error: data.error });
         } else {
-        console.log("preload");
             setValues({ ...values, categories: data, formData: new FormData() });
-            allCategories = data;
         }   
         });
     };
 
     useEffect(() => {
-        console.log("useEffect");
         preload();
 
         var elems = document.querySelectorAll('select');
         var instances = M.FormSelect.init(elems, {});
-
     }, []);
 
     const onSubmit = (event) => {
@@ -117,75 +112,165 @@ export default function AddProduct() {
     };
 
     const createProductForm = () => (
-      <form>
-        <span>Upload image</span>
-        <div className="form-group">
-          <label className="btn btn-block btn-success">
+      <div>
+        {/* <form>
+          <span>Upload image</span>
+          <div className="form-group">
+            <label className="btn btn-block btn-success">
+              <input
+                onChange={handleChange("image")}
+                type="file"
+                name="image"
+                accept="image"
+                placeholder="choose an image"
+              />
+            </label>
+          </div>
+          <div className="form-group">
             <input
-              onChange={handleChange("image")}
-              type="file"
-              name="image"
-              accept="image"
-              placeholder="choose an image"
+              onChange={handleChange("name")}
+              name="name"
+              className="form-control"
+              placeholder="Enter product name"
+              value={name}
             />
-          </label>
+          </div>
+          <div className="form-group">
+            <textarea
+              onChange={handleChange("description")}
+              name="description"
+              className="form-control"
+              placeholder="Enter product description"
+              value={description}
+            />
+          </div>
+          <div>
+            <input
+              onChange={handleChange("cost")}
+              type="number"
+              className="form-control"
+              placeholder="Enter product cost"
+              value={cost}
+            />
+          </div>
+          <div>
+            <select onChange={handleChange("category")}>
+              <option>Select category</option>
+              {allCate &&
+                allCate.map((cate, index) => (
+                  <option key={index} value={cate._id}>
+                    {cate.name}
+                  </option>
+                ))}
+            </select>
+          </div>
+          <div className="form-group">
+            <input
+              onChange={handleChange("stock")}
+              type="number"
+              className="form-control"
+              placeholder="Enter the product quantity"
+              value={stock}
+            />
+          </div>
+          <button
+            type="submit"
+            onClick={onSubmit}
+            className="btn btn-outline-success mb-3"
+          >
+            Create Product
+          </button>
+        </form> */}
+
+        <div className="row">
+          <form className="col s12">
+            <div className="row">
+              <div className="file-field input-field">
+                <div className="btn sm">
+                  <span>Choose image</span>
+                  <input
+                    type="file"
+                    onChange={handleChange("image")}
+                    type="file"
+                    name="image"
+                    accept="image"
+                  />
+                </div>
+                <div className="file-path-wrapper">
+                  <input className="file-path validate" type="text" />
+                </div>
+              </div>
+            </div>
+
+            <div className="row">
+              <div className="input-field col s12">
+                <input
+                  id="prod_name"
+                  type="text"
+                  onChange={handleChange("name")}
+                  name="name"
+                  value={name}
+                />
+                <label htmlFor="prod_name">Product name</label>
+              </div>
+            </div>
+
+            <div className="input-field">
+              <textarea
+                id="textarea1"
+                className="materialize-textarea"
+                onChange={handleChange("description")}
+                name="description"
+                className="form-control"
+                placeholder="Enter product description"
+                value={description}
+              ></textarea>
+              <label htmlFor="textarea1">Product Description</label>
+            </div>
+
+            <div className="row">
+              <div className="input-field col s12">
+                <input id="cost" type="number" />
+                <label htmlFor="cost">Product Cost</label>
+              </div>
+            </div>
+
+            <div className="row">
+              <div className="input-field col s12">
+                <select id="category" onChange={handleChange("category")}>
+                  <option>Select category</option>
+                  {allCate &&
+                    allCate.map((cate, index) => (
+                      <option key={index} value={cate._id}>
+                        {cate.name}
+                      </option>
+                    ))}
+                </select>
+                <label htmlFor="category">Category</label>
+              </div>
+            </div>
+
+            <div className="row">
+              <div className="input-field col s12">
+                <input
+                  id="stock"
+                  onChange={handleChange("stock")}
+                  type="number"
+                  value={stock}
+                />
+                <label htmlFor="stock">Product Stock</label>
+              </div>
+            </div>
+            <button
+              type="submit"
+              onClick={onSubmit}
+              className="btn btn-outline-success mb-3"
+            >
+              Create Product
+            </button>
+          </form>
         </div>
-        <div className="form-group">
-          <input
-            onChange={handleChange("name")}
-            name="name"
-            className="form-control"
-            placeholder="Enter product name"
-            value={name}
-          />
-        </div>
-        <div className="form-group">
-          <textarea
-            onChange={handleChange("description")}
-            name="description"
-            className="form-control"
-            placeholder="Enter product description"
-            value={description}
-          />
-        </div>
-        <div>
-          <input
-            onChange={handleChange("cost")}
-            type="number"
-            className="form-control"
-            placeholder="Enter product cost"
-            value={cost}
-          />
-        </div>
-        <div>
-          <select onChange={handleChange("category")}>
-            <option>Select category</option>
-            {allCategories &&
-              allCategories.map((cate, index) => (
-                <option key={index} value={cate._id}>
-                  {cate.name}
-                </option>
-              ))}
-          </select>
-          {console.log("dropdown loaded")}
-        </div>
-        <div className="form-group">
-          <input
-            onChange={handleChange("stock")}
-            type="number"
-            className="form-control"
-            placeholder="Enter the product quantity"
-            value={stock}
-          />
-        </div>
-        <button
-          type="submit"
-          onClick={onSubmit}
-          className="btn btn-outline-success mb-3"
-        >
-          Create Product
-        </button>
-      </form>
+      </div>
     );
 
     const renderBackButton = () => {

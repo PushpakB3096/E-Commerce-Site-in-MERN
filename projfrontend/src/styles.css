@@ -1,8 +1,8 @@
-.brand-logo{
+.brand-logo {
   margin-left: 8px;
 }
 
-body{
+body {
   background-color: #f3f9f8;
 }
 
@@ -11,52 +11,50 @@ body{
   align-items: center;
 }
 
-#brand-logo-img{
+#brand-logo-img {
   margin: 5px 0;
   height: 50px;
   border-radius: 50%;
 }
 
-.footer-copyright{
+.footer-copyright {
   background-color: #00838f;
 }
 
-.sidenav-overlay{
+.sidenav-overlay {
   background-color: transparent;
 }
 
-.slider .indicators .indicator-item.active{
+.slider .indicators .indicator-item.active {
   background-color: #00838f;
 }
 
-.card-image{
+.card-image {
   height: 375px;
   overflow: visible;
 }
 
-.slider{
+.slider {
   margin-top: -23px;
 }
 
-.card{
+.card {
   margin: 40px 5px;
 }
 
-#signin-form-container{
+#signin-form-container {
   width: 38%;
 }
 
-#login-btn{
+#user-btn {
   background-color: #00838f;
-  margin-top: 0.5em;
   margin-left: 5.3em;
   position: relative;
 }
 
 @media (min-width: 900px) {
-  #login-btn{
+  #user-btn {
     background-color: #00838f;
-    margin-top: 0.5em;
     margin-left: 13em;
     position: relative;
   }
