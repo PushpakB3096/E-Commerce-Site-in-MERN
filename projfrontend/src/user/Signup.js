@@ -51,15 +51,16 @@ export default function Signup() {
   const successMessage = () => {
     //show success message, if any
     return (
-      <div className="row">
-        <div className="col-md-6 offset-sm-3 text-left">
-          <div
-            className="alert alert-success"
-            style={{ display: isSuccess ? "" : "none" }}
-          >
-            Welcome aboard! Click <Link to="/signin">here</Link> to login.
+      <div>
+        {isSuccess && (
+          <div className="row">
+            <div className="col l12 m12 s12">
+              <h6 className="container msg-container">
+                Welcome aboard! Click <Link to="/signin">here</Link> to login.
+              </h6>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     );
   };
@@ -67,57 +68,20 @@ export default function Signup() {
   const errorMessage = () => {
     //show error message, if any
     return (
-      <div className="row">
-        <div className="col-md-6 offset-sm-3 text-left">
-          <div
-            className="alert alert-danger"
-            style={{ display: errors ? "" : "none" }}
-          >
-            {errors}
+      <div>
+        {errors && (
+          <div className="row">
+            <div className="col l12 m12 s12">
+              <h6 className="container msg-container">{errors}</h6>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     );
   };
 
   // function to render the signup form
   const signUpForm = () => {
-    // return (
-    //   <div className="row">
-    //     <div className="col-md-6 offset-sm-3 text-left">
-    //       <form>
-    //         <div className="form-group">
-    //           <input
-    //             className="form-control"
-    //             onChange={handleChange("lastName")}
-    //             type="text"
-    //             value={ lastName }
-    //             placeholder="Enter your last name"
-    //           />
-    //         </div>
-    //         <div className="form-group">
-    //           <input
-    //             className="form-control"
-    //             onChange={handleChange("email")}
-    //             type="email"
-    //             value={ email }
-    //             placeholder="Enter your email"
-    //           />
-    //         </div>
-    //         <div className="form-group">
-    //           <input
-    //             className="form-control"
-    //             onChange={handleChange("password")}
-    //             type="password"
-    //             value={ password }
-    //             placeholder="Enter your password"
-    //           />
-    //         </div>
-    //         <button onClick={ onSubmit } className="btn btn-success btn-block">Register</button>
-    //       </form>
-    //     </div>
-    //   </div>
-    // );
     return (
       <div className="row">
         <div className="col l12 m12 s12">
@@ -195,5 +159,4 @@ export default function Signup() {
     </Base>
   );
 }
-
 /* end of Signup.js */

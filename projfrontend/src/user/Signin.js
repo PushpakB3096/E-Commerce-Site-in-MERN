@@ -48,13 +48,11 @@ export default function Signin() {
   };
 
   const loadingMessage = () => {
-    //show success message, if any
+    //show preloader while the user gets logged in
     if (isLoading) {
       return (
-        <div className="row">
-          <div className="col-md-6 offset-sm-3 text-left">
-            <div className="alert alert-info">Loading...</div>
-          </div>
+        <div className="progress">
+          <div className="indeterminate"></div>
         </div>
       );
     }
@@ -63,15 +61,14 @@ export default function Signin() {
   const errorMessage = () => {
     //show error message, if any
     return (
-      <div className="row">
-        <div className="col-md-6 offset-sm-3 text-left">
-          <div
-            className="alert alert-danger"
-            style={{ display: errors ? "" : "none" }}
-          >
-            {errors}
+      <div>
+        {errors && (
+          <div className="row">
+            <div className="col l12 m12 s12">
+              <h6 className="container msg-container">{errors}</h6>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     );
   };
