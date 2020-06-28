@@ -1,11 +1,12 @@
 /* start of app.js */
 
-require('dotenv').config();   //loading the 'dotenv' package to read config from '.env' file
+require("dotenv").config(); //loading the 'dotenv' package to read config from '.env' file
 
-const mongoose = require('mongoose');
-const express = require('express');
-const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
+const path = require("path");
+const mongoose = require("mongoose");
+const express = require("express");
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
 const cors = require("cors");
 
 //importing routes
@@ -18,7 +19,7 @@ const paymentRoute = require("./routes/payment");
 //uncomment the below line if you want to use Stripe as your payment gateway
 //const stripeRoute = require("./routes/stripepayment");
 
-const PORT = process.env.SERVERPORT;
+const PORT = process.env.SERVERPORT || 9999;
 
 const app = express();
 
@@ -26,16 +27,19 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(cors());
+app.use(express.static(path.join(__dirname, "client", "build")));
 
 //establishing DB connection
-mongoose.connect(process.env.DATABASEURL, { 
+mongoose
+  .connect(process.env.DATABASEURL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
-    useFindAndModify: false
-}).then(() => {
+    useFindAndModify: false,
+  })
+  .then(() => {
     console.log("CONNECTION TO THE DB ESTABLISHED");
-});
+  });
 
 //using the routes
 app.use("/api", authRoute);
@@ -47,8 +51,12 @@ app.use("/api", paymentRoute);
 //uncomment the below line if you want to use Stripe as your payment gateway
 //app.use("/api", stripeRoute);
 
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
+
 app.listen(PORT, () => {
-    console.log(`Server listening to port ${PORT}...`);
+  console.log(`Server listening to port ${PORT}...`);
 });
 
 /* end of app.js */

@@ -13,11 +13,11 @@ export default function AdminDashBoard() {
 
   const adminLeftPanel = () => {
     return (
-      <ul className="collection with-header">
+      <ul className="collection with-header z-depth-4">
         <li className="collection-header">
           <h6>Admin Panel</h6>
         </li>
-        <Link to="/admin/create/category" className="collection-item">
+        <Link to="/admin/create/category" className="collection-item z-depth-2">
           Create Category
         </Link>
         <Link to="/admin/categories" className="collection-item">
@@ -38,38 +38,11 @@ export default function AdminDashBoard() {
 
   const adminRightPanel = () => {
     return (
-      //   <div>
-      //     <div className="card mb-4">
-      //       <h4 className="card-header">Admin Information</h4>
-      //       <ul className="list-group">
-      //         <li className="list-group-item">
-      //           <span className="badge badge-success mr-2">First Name: </span>
-      //           <span>{firstName}</span>
-      //         </li>
-      //         <li className="list-group-item">
-      //           <span className="badge badge-success mr-2">Last Name: </span>
-      //           <span>{lastName}</span>
-      //         </li>
-      //         <li className="list-group-item">
-      //           <span className="badge badge-success mr-2">Email Address: </span>
-      //           <span>{email}</span>
-      //         </li>
-      //         <li className="list-group-item">
-      //           <span className="badge badge-success mr-2">User Info: </span>
-      //           <span>{userInfo}</span>
-      //         </li>
-      //         <li className="list-group-item">
-      //           <span className="badge badge-danger mr-2">User Role: </span>
-      //           <span>{privilege}</span>
-      //         </li>
-      //       </ul>
-      //     </div>
-      //   </div>
-      <ul className="collection with-header">
+      <ul className="collection with-header z-depth-4">
         <li className="collection-header">
-          <h5>Admin Information</h5>
+          <h5>{privilege} Information</h5>
         </li>
-        <li className="collection-item">
+        <li className="collection-item z-depth-2">
           <span className="new badge left" data-badge-caption="">
             First Name
           </span>
