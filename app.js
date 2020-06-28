@@ -19,13 +19,15 @@ const paymentRoute = require("./routes/payment");
 //uncomment the below line if you want to use Stripe as your payment gateway
 //const stripeRoute = require("./routes/stripepayment");
 
+const PORT = process.env.PORT || 9999;
+
 const app = express();
 
 //common middlewares
-app.use(express.static(path.join(__dirname, "client", "build")));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(cors());
+app.use(express.static(path.join(__dirname, "client", "build")));
 
 //establishing DB connection
 mongoose
@@ -53,7 +55,7 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 });
 
-app.listen(process.env.PORT || 9999, () => {
+app.listen(PORT, () => {
   console.log(`Server listening to port ${PORT}...`);
 });
 
