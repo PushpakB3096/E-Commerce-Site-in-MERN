@@ -6,9 +6,6 @@ client/node_modules/
 .env
 client/.env
 
-#all external assets
-assets
-
 #local IDE settings
 .vscode
 
