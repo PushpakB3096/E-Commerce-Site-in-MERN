@@ -51,6 +51,8 @@ app.use("/api", paymentRoute);
 //uncomment the below line if you want to use Stripe as your payment gateway
 //app.use("/api", stripeRoute);
 
+app.use("/", express.static(path.join(__dirname, "/client/build")));
+
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 });
