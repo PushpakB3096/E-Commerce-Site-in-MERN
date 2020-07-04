@@ -9,7 +9,6 @@ import M from "materialize-css";
 import { isAuthenticated, signout } from "../auth/helper";
 
 const Navbar = ({ history }) => {
-  
   useEffect(() => {
     var notAvailableModal = document.querySelectorAll(".modal");
     var modalInst = M.Modal.init(notAvailableModal, {
@@ -19,13 +18,13 @@ const Navbar = ({ history }) => {
       dismissible: true,
       opacity: 0.65,
     });
-  
-    var sidebarElem = document.querySelectorAll('.sidenav');
+
+    var sidebarElem = document.querySelectorAll(".sidenav");
     var sidebarInst = M.Sidenav.init(sidebarElem, {
-      inDuration: 320
+      inDuration: 320,
     });
 
-    var tooltipElem = document.querySelectorAll('.tooltipped');
+    var tooltipElem = document.querySelectorAll(".tooltipped");
     var tooltipInst = M.Tooltip.init(tooltipElem, {});
   }, []);
 
@@ -137,12 +136,12 @@ const Navbar = ({ history }) => {
                 <Fragment>
                   <li>
                     <Link to="/signup">
-                      <i className="material-icons left">person_add</i>Signup
+                      <i className="material-icons left">person_add</i>Sign up
                     </Link>
                   </li>
                   <li>
                     <Link to="/signin">
-                      <i className="material-icons left">person</i>Signin
+                      <i className="material-icons left">person</i>Sign in
                     </Link>
                   </li>
                 </Fragment>
